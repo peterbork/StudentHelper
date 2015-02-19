@@ -61,11 +61,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Helper\DateHelper.cs" />
-=======
     <Compile Include="Helper\DatabaseFacade.cs" />
->>>>>>> origin/master
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
