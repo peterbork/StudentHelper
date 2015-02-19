@@ -47,7 +47,7 @@ namespace StudentHelper.Helper
             {
                 connect.Open();
 
-                SqlCommand sqlCmd = new SqlCommand("SH_CreateHomework", connect);
+                SqlCommand sqlCmd = new SqlCommand("SH_CreateEvent", connect);
                 sqlCmd.CommandType = CommandType.StoredProcedure;
                 sqlCmd.Parameters.Add(new SqlParameter("@UserId", UserID));
                 sqlCmd.Parameters.Add(new SqlParameter("@Date", Date));
@@ -76,7 +76,7 @@ namespace StudentHelper.Helper
             try
             {
                 connect.Open();
-                SqlCommand sqlCmd = new SqlCommand("phil2452_SP_GetMalt", connect);
+                SqlCommand sqlCmd = new SqlCommand("SH_GetUser", connect);
                 sqlCmd.CommandType = CommandType.StoredProcedure;
                 SqlDataReader reader = sqlCmd.ExecuteReader();
 
@@ -91,6 +91,41 @@ namespace StudentHelper.Helper
             }
             finally
             {
+                connect.Close();
+                connect.Dispose();
+            }
+            return Users;
+        }
+
+        public static Dictionary<Event, Homework> GetWeeklySchedule(string userId, DateTime StartDate, DateTime EndDate) {
+            Dictionary<Event, Homework> tempEHDictionary = new Dictionary<Event, Homework>();
+            
+            SqlConnection connect = new SqlConnection(_connect);
+
+            try {
+                connect.Open();
+
+                SqlCommand sqlCmd = new SqlCommand("phil2452_SP_GetMalt", connect);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+
+                sqlCmd.Parameters.Add("@UserId", userId);
+                sqlCmd.Parameters.Add("@StartDate", StartDate);
+                sqlCmd.Parameters.Add("@EndDate", EndDate);
+
+                SqlDataReader reader = sqlCmd.ExecuteReader();
+
+                if (reader.HasRows) {
+                    while (reader.Read()) {
+                        Event EVENT = new Event(""+reader["Type"], ""+reader["Location"], DateTime.Parse(""+reader["StartDate"]), ""+reader["ID"], ""+reader["Description"], userId, DateTime.Parse(""+reader["Date"]);
+                        Homework homework = new Homework(""+reader["Class"], ""+reader["ID"], ""+reader["Description"], userId, DateTime.Parse(""+reader["Date"]));
+                        
+                        tempEHDictionary.Add(EVENT, homework);
+                    }
+                }
+
+            } catch (Exception e) {
+                throw e;
+            } finally {
                 connect.Close();
                 connect.Dispose();
             }
