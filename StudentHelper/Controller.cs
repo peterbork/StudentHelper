@@ -16,5 +16,12 @@ namespace StudentHelper {
 
             return WeekNumber;
         }
+        public void NextWeek() {
+            WeekNumber = WeekNumber + 1;
+        }
+
+        public void PreviousWeek() {
+            WeekNumber = WeekNumber - 1;
+        }
     }
 }

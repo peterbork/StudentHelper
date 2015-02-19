@@ -24,5 +24,13 @@ namespace StudentHelper {
             InitializeComponent();
             CurrentWeekNumber.Content = "Week " + _controller.GetWeekNumber();
         }
+
+        private void NextWeek_Click(object sender, RoutedEventArgs e) {
+            _controller.NextWeek();
+        }
+
+        private void PrevWeek_Click(object sender, RoutedEventArgs e) {
+            _controller.PreviousWeek();
+        }
     }
 }
