@@ -18,9 +18,11 @@ namespace StudentHelper {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        Controller _controller = new Controller();
         public MainWindow() {
             InitializeComponent();
-            CurrentWeekNumber.Content = "Week " + Helper.DateHelper.GetCurrentWeekNumber();
+            CurrentWeekNumber.Content = "Week " + _controller.GetWeekNumber();
         }
     }
 }
