@@ -71,6 +71,7 @@
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Homework.cs" />
     <Compile Include="Model\Plan.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
