@@ -16,5 +16,11 @@ namespace StudentHelper.Model {
             this.Password = password;
             this.Name = name;
         }
+
+        public User(string id, string name)
+        {
+            this.ID = id;
+            this.Name = name;
+        }
     }
 }
