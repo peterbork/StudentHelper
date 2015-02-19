@@ -20,6 +20,7 @@ namespace StudentHelper {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            CurrentWeekNumber.Content = "Week " + Helper.DateHelper.GetCurrentWeekNumber();
         }
     }
 }
